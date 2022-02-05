@@ -1,0 +1,30 @@
+ 
+  .button2 {
+    padding: 20px 40px;
+    background: none;
+    border: none;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+  }
+  .button2:after, button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 2px solid #000;
+    transition: transform 0.2s;
+  }
+  .button2:after {
+    transform: translate(3px, 3px);
+  }
+  .button2:before {
+    transform: translate(-3px, -3px);
+  }
+  .button2:hover:after, button:hover:before {
+    transform: translate(0);
+  }
