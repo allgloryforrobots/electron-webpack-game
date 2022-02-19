@@ -1,12 +1,11 @@
 import fs from 'fs'
-import BSON from 'bson'
 
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld(
   'electron',
   {
-    fs, BSON
+    fs
   }
 )
 

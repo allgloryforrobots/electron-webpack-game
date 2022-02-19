@@ -2,9 +2,9 @@
 @import "variables";
 @import "fonts";
 @import "menu/menu.less";
-@import "frame/frame.less";
-@import "typography/typography.less";
-@import "buttons/buttons.less";
+@import "screens/screens.less";
+
+
 
 * {
     box-sizing: border-box;
@@ -19,6 +19,12 @@ body {
     padding: 0;
     margin: 0;
     overflow: hidden;
+    font-size: 1.2rem;
+    font-family: 'FiraSans-Regular';
+    color: white;
+    width: 900px;
+    height: 180px;
+    cursor:  url(screens/crosshair046.png), auto;
 }
 
 // экраны
@@ -30,5 +36,40 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
+em {
+    font-size: 1.2rem;
+    font-family: 'FiraSans-Italic';
+    color: white;
+}
+
+b {
+    font-size: 1.2rem;
+    font-family: 'FiraSans-Bold';
+    color: white;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-family: 'FiraSans-Regular';
+    color: #9c2c11;
+    width: 900px;
+    height: 3rem;
+    margin-left: 3rem;
+    text-shadow: #9c2c11 1px 0 10px;
+    font-weight: normal;
+}
+
+.hidden {
+    display: none;
+}
+
+::selection {
+    color: grey;
+    background: none;
+}

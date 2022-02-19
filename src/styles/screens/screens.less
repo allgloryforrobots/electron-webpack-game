@@ -1,0 +1,225 @@
+.layer {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+
+
+    // главное меню
+    &.layer_menu {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: url(main-menu_bg.png) center / cover no-repeat;
+
+        .main-menu_title {
+
+            font-size: 1.75rem;
+            font-family: 'Bitter-Black';
+            color: #d5d7e5;
+            letter-spacing: 4px;
+            font-weight: normal;
+            margin-bottom: 2rem;
+            position: relative;
+            display: block;
+            text-transform: uppercase;
+            box-shadow: #d5d7e5 0px 6px 9px -12px, #d5d7e5 0px -7px 9px -12px;
+
+            &:first-letter {
+                font-size: 2rem;
+            }
+        }
+
+        .main-menu_item  {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-family: 'Bitter-Black';
+            text-shadow: #000 1px 0 10px;
+            color: silver;
+            font-weight: normal;
+            transition: 1s all;
+            letter-spacing: 3px;
+
+            &:hover {
+                letter-spacing: 6px;
+            }
+        }   
+    }
+
+
+    // меню выбора вариантов в диалоге
+    &.layer_choice {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 700px;
+        counter-reset: choice;  
+
+        .choice_item {
+            width: 700px;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-family: 'FiraSans-Regular';
+            text-shadow: #000 1px 0 10px;
+            color: white;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 3rem;
+            transition: all .3s;
+
+            &::before {
+                counter-increment: choice; /* Инкрементирует счётчик*/
+                content: counter(choice) ". ";
+                margin-right: 1rem;
+                opacity: 0.25;
+            }
+
+            &:hover {
+                background: rgb(156,44,17);
+                background: linear-gradient(90deg, rgba(156,44,17,0.5270483193277311) 0%, rgba(156,44,17,0) 100%);
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    // экран настроек
+    &.layer_bg {
+        background: url(layer_bg.png) bottom / cover no-repeat;
+
+    }
+
+    // фон экрана чтения книг и записок
+    &.layer_nvl {
+        background: url(layer_nvl.png) left / cover no-repeat;
+    }
+
+    // экран чтения книг и записок
+    &.layer_book {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 500px;
+        padding-left: 3rem;
+        transform: translateY(-5rem);
+
+        .book_header {
+            font-size: 1.2rem;
+            font-family: 'FiraSans-Regular';
+            color: #9c2c11;
+            height: 2rem;
+            margin-left: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: #9c2c11 1px 0 10px;
+            font-weight: normal;
+            display: flex;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                top: -0.5rem;
+                content:"";
+                width:40px;
+                height:3px;
+                background: #9c2c11;
+            }
+
+            &::after {
+                position: absolute;
+                bottom: -0.4rem;
+                content:"";
+                width: 150px;
+                height: 1px;
+                background: #9c2c11;
+            }
+        }
+
+        .book_article {
+            font-size: 1.1rem;
+            font-family: 'FiraSans-Regular';
+            color: white;
+            width: 500px;
+            text-shadow: #000 1px 0 10px;
+            margin-bottom: 1rem;
+        }
+
+        .book_author {
+            font-size: 0.9rem;
+            text-shadow: #000 1px 0 10px;
+            font-family: 'FiraSans-Italic';
+            margin-left: 3rem;
+
+            &:before {
+                content:"—";
+                margin-right: 0.75rem;
+            }
+
+            &:after {
+                content:"—";
+                margin-left: 0.75rem;
+            }
+        }
+
+    }
+
+    // фон экрана диалога
+    &.layer_adv {
+        background: url(layer_adv.png) center / cover no-repeat;
+    }
+
+    // экран диалога
+    &.layer_what {
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        
+        // кто говорит?
+        .who_text {
+            width: 900px;
+            font-size: 1.2rem;
+            font-family: 'FiraSans-Regular';
+            color: #9c2c11;
+            height: 2rem;
+            margin-left: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: #9c2c11 1px 0 10px;
+            font-weight: normal;
+            display: flex;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                top: -0.5rem;
+                content:"";
+                width:40px;
+                height:3px;
+                background: #9c2c11;
+            }
+
+            &::after {
+                position: absolute;
+                bottom: -0.4rem;
+                content:"";
+                width: 150px;
+                height: 1px;
+                background: #9c2c11;
+            }
+        }
+
+        // что говорит песонаж?
+        .what_text {
+            font-size: 1.2rem;
+            font-family: 'FiraSans-Regular';
+            color: white;
+            width: 900px;
+            height: 180px;
+            text-shadow: #000 1px 0 10px;
+        }
+    }
+}
+
+

@@ -1,65 +1,55 @@
-/**
- * This file will automatically be loaded by webpack and run in the "renderer" context.
- * To learn more about the differences between the "main" and the "renderer" context in
- * Electron, visit:
- *
- * https://electronjs.org/docs/tutorial/application-architecture#main-and-renderer-processes
- *
- * By default, Node.js integration in this file is disabled. When enabling Node.js integration
- * in a renderer process, please be aware of potential security implications. You can read
- * more about security risks here:
- *
- * https://electronjs.org/docs/tutorial/security
- *
- * To enable Node.js integration in this file, open up `main.js` and enable the `nodeIntegration`
- * flag:
- *
- * ```
- *  // Create the browser window.
- *  mainWindow = new BrowserWindow({
- *    width: 800,
- *    height: 600,
- *    webPreferences: {
- *      nodeIntegration: true
- *    }
- *  });
- * ```
- */
-
 import './index.css'
 import './styles/index.less'
+import { AudioPlayer } from './AudioPlayer'
 
-// @ts-ignore
-const fs =  window.electron.fs;
-// @ts-ignore
-const bson =  window.electron.BSON;
 
-class CustomSerialize {
-    s: string
+// ПЕРЕРИСОВКА СТРАНИЦ
+// объект, где храним всю информацию
+let $: { [key: string]: any } = {}
 
-    constructor() {
-        this.s = 'log'
+// перерисовка и обновление данных при изменении параметра
+let handler = {
+    get: function(target: typeof $, prop: string) {
+        // Стандартный возврат значения
+        return target[prop]
+    },
+
+    set: function(target: typeof $, prop: string, value: any) {
+        // Стандартное сохранение значения
+        target[prop] = value
+        // перерисовываем все элементы с указанным значением
+        // динамические параметры храним в <span data-render='?prop'>?value</span>
+        document.querySelectorAll(`span[data-render="${prop}"]`).forEach(node => node.innerHTML = value)
+        return true
     }
+};
 
+let store = new Proxy($, handler)
 
-    con(): string {
-      return this.s;
-    }
+// СИСТЕМНЫЕ ФУНКЦИИ
+class System {
+
 }
 
-let obj = new CustomSerialize;
+let _ = new System();
 
-// console.log(bson.deserialize(bson.serialize(obj)));
 
-fs.writeFile ('test.txt', bson.serialize(obj, false, false, true), (err: string): void => {
-    if(err) console.log(`Err : ${err}`)
-})
+
+// ЗАПИСЬ И ЧТЕНИЕ ХРАНИЛИЩА ДАННЫХ 
+// сохранение и загрузка игры
+// @ts-ignore
+const fs =  window.electron.fs;
+
 
 fs.readFile('test.txt', (err: string, file: Uint8Array): void => {
     if(err) console.log(`Err : ${err}`)
-    console.log(bson.deserialize(file))
 })
+
 
 
 
 console.log('👋 This message is being logged by "renderer.js", included via webpack')
+
+
+let audioPlayer = new AudioPlayer;
+setTimeout(() =>audioPlayer.play('mainMenu'), 1000 )
